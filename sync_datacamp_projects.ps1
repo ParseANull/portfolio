@@ -1,6 +1,6 @@
 ###############################################################################
-# DataCamp Project Automation Script - Enhanced Version
-# Purpose: Sync downloaded DataCamp projects to GitHub repositories
+# Project Automation Script - Enhanced Version
+# Purpose: Sync downloaded projects to GitHub repositories
 # Author: Portfolio Setup
 # Version: 2.0
 ###############################################################################

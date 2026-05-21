@@ -1,7 +1,7 @@
 ﻿# Portfolio
 
-## DataCamp Projects Completion Status
-- Complete: All 40 DataCamp projects published to GitHub
+## Projects Completion Status
+- Complete: All 40 projects published to GitHub
 
 ### Statistics
 - **Repos Verified:** 40/40
