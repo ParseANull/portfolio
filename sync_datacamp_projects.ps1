@@ -34,7 +34,7 @@ EXAMPLES:
 # CONFIGURATION
 # ============================================================================
 
-$BasePortfolioPath = $PSScriptRoot
+$BasePortfolioPath = "C:\GitHub\datacamp-projects"
 $DownloadsFolder = Join-Path $env:USERPROFILE "Downloads"
 $LogFile = Join-Path $BasePortfolioPath "sync_log_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
 
@@ -237,8 +237,8 @@ if ($ProjectFilter) {
     Log "Filtered to $($Projects.Count) projects matching: $ProjectFilter" "INFO"
 }
 
-if ($MaxProjects -gt 0) {
-    $Projects = $Projects | Select-Object -First $MaxProjects
+if ($MaxProjects -gt 0 -and $MaxProjects -lt $Projects.Count) {
+    $Projects = @($Projects | Select-Object -First $MaxProjects)
     Log "Limited to first $MaxProjects projects" "INFO"
 }
 
@@ -254,8 +254,10 @@ $stats = @{
 }
 
 # Process each project
-foreach ($projectIndex, $project in ($Projects | ForEach-Object { $_ } | Foreach-Object { $i++ } { $_, $i })) {
-    Log "`n[$projectIndex/$($Projects.Count)] Processing: $project" "INFO"
+for ($projectIndex = 0; $projectIndex -lt $Projects.Count; $projectIndex++) {
+    $project = $Projects[$projectIndex]
+    $currentNum = $projectIndex + 1
+    Log "`n[$currentNum/$($Projects.Count)] Processing: $project" "INFO"
     
     $repoPath = Get-ProjectRepository $project
     if (!$repoPath) {
